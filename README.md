@@ -1,98 +1,230 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Library API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Project Overview
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+Library API is a RESTful backend service for managing a collection of books and user authentication. It allows users to register, log in, and manage their own books. The API is built with NestJS and uses Prisma ORM to interact with a MongoDB database. Authentication is handled using JWT tokens with refresh token support.
 
-## Description
+## Technology Stack
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- **Node.js** (JavaScript/TypeScript runtime)
+- **NestJS** (Backend framework)
+- **Prisma ORM** (Database ORM)
+- **MongoDB** (Database)
+- **JWT** (Authentication)
+- **bcryptjs** (Password hashing)
+- **class-validator** & **class-transformer** (DTO validation)
+- **Passport.js** (Authentication middleware)
+- **ESLint** & **Prettier** (Code quality and formatting)
 
-## Project setup
+## Setup Instructions
 
-```bash
-$ npm install
-```
+1. **Clone the repository**
+   ```sh
+   git clone https://github.com/AkshatK6971/LibraryAPI.git
+   cd library-api
+   ```
 
-## Compile and run the project
+2. **Install dependencies**
+   ```sh
+   npm install
+   ```
 
-```bash
-# development
-$ npm run start
+3. **Configure environment variables**
 
-# watch mode
-$ npm run start:dev
+   Create a `.env` file in the root directory with the following content (update values as needed):
 
-# production mode
-$ npm run start:prod
-```
+   ```
+   DATABASE_URL="your-mongodb-connection-string"
+   JWT_SECRET=your-jwt-secret
+   JWT_REFRESH_SECRET=your-jwt-refresh-secret
+   ```
 
-## Run tests
+4. **Generate Prisma client**
+   ```sh
+   npx prisma generate
+   ```
 
-```bash
-# unit tests
-$ npm run test
+5. **(Optional) Seed the database**
+   ```sh
+   node prisma/populatedb.js
+   ```
 
-# e2e tests
-$ npm run test:e2e
+6. **Run the application**
+   - Development mode (with hot reload):
+     ```sh
+     npm run start:dev
+     ```
+   - Production mode:
+     ```sh
+     npm run build
+     npm run start:prod
+     ```
 
-# test coverage
-$ npm run test:cov
-```
+7. **API will be available at** `http://localhost:3000`
 
-## Deployment
+## Features
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+- **User Registration & Login**
+  - Secure registration and login with hashed passwords.
+  - JWT-based authentication with refresh token support.
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+- **Book Management**
+  - Create, read, update, and delete books.
+  - Each book is associated with a user.
+  - Only the owner can update or delete their books.
 
-```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
-```
+- **Validation & Error Handling**
+  - DTO validation using class-validator.
+  - Proper error responses for forbidden actions and not found resources.
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+- **Prisma ORM Integration**
+  - MongoDB database access via Prisma.
+  - Easy schema management and migrations.
 
-## Resources
+## API Documentation
 
-Check out a few resources that may come in handy when working with NestJS:
+### User Endpoints
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+#### Register
 
-## Support
+- **POST** `/users/register`
+- **Body:**
+  ```json
+  {
+    "email": "user@example.com",
+    "password": "yourpassword"
+  }
+  ```
+- **Response:** 
+   ```json
+   {
+      "accessToken": <accessToken>,
+      "refreshToken": <refreshToken>
+   }
+   ```
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+#### Login
 
-## Stay in touch
+- **POST** `/users/login`
+- **Body:**
+  ```json
+  {
+    "email": "user@example.com",
+    "password": "yourpassword"
+  }
+  ```
+- **Response:** JWT access and refresh tokens
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+> The following endpoints require the `Authorization: Bearer <accessToken>` header.
+#### Logout
 
-## License
+- **GET** `/users/logout`
+- **Response:** 
+   ```json
+   {
+      "id": <user-id>,
+      "email": "user@example.com",
+      "refreshToken": null
+   }
+   ```
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+#### Info
+
+- **GET** `/users/info`
+- **Response:**
+   ```json
+   {
+      "id": <user-id>,
+      "email": "user@example.com"
+   }
+   ```
+
+#### Refresh Token
+> This endpoint requires the `Authorization: Bearer <refreshToken>` header.
+- **GET** `/users/refresh`
+- **Response:** New access and refresh tokens
+
+---
+
+### Book Endpoints
+#### Get All Books
+
+- **GET** `/books`
+- **Response:** Array of books
+
+#### Get Book by ID
+
+- **GET** `/books/:id`
+- **Response:** 
+   ```json
+   {
+     "id": <book-id>,
+     "title": "Book Title",
+     "author": "Author Name",
+     "genre": "Book Genre",
+     "pages": "number of pages",
+     "userId": <user-id>
+   }
+   ```
+
+> The following endpoints require the `Authorization: Bearer <accessToken>` header. Only the books created by the respective user can be updated or deleted by them.
+#### Create Book
+
+- **POST** `/books/create`
+- **Body:**
+  ```json
+  {
+    "title": "Book Title",
+    "author": "Author Name",
+    "genre": "Book Genre",
+    "pages": "number of pages"
+  }
+  ```
+- **Response:** Created book object
+
+#### Update Book
+
+- **PATCH** `/books/:id`
+- **Body:** (any or all fields)
+  ```json
+  {
+    "title": "Book Title",
+    "author": "Author Name",
+    "genre": "Book Genre",
+    "pages": "number of pages"
+  }
+  ```
+- **Response:** Updated book object
+
+#### Delete Book
+
+- **DELETE** `/books/:id`
+- **Response:** Array of books after deletion of respective book
+
+---
+
+## Challenges & Solutions
+
+- **Challenge:** Securely storing and validating refresh tokens.
+  - **Solution:** Refresh tokens are hashed before storing in the database. On refresh, the provided token is compared using bcrypt to prevent token leakage.
+
+- **Challenge:** Ensuring only book owners can modify or delete their books.
+  - **Solution:** Ownership checks are implemented in the service layer before allowing updates or deletions.
+
+- **Challenge:** DTO validation and transformation.
+  - **Solution:** Used `class-validator` and `class-transformer` with NestJS's global validation pipe to enforce input validation.
+
+- **Challenge:** Managing environment variables securely.
+  - **Solution:** Used `@nestjs/config` to load and manage environment variables.
+
+## Future Enhancements
+
+- **API Documentation:** Add Swagger/OpenAPI documentation for easier API exploration.
+- **Pagination & Filtering:** Implement pagination and filtering for book listings.
+- **User Roles:** Add support for admin roles and permissions.
+- **Unit & Integration Tests:** Expand test coverage for all modules and endpoints.
+- **Rate Limiting:** Add rate limiting to prevent abuse.
+- **Dockerization:** Provide Docker support for easier deployment.
+- **Frontend Integration:** Build a frontend client for interacting with the API.
+
+---
