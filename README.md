@@ -21,7 +21,7 @@ Library API is a RESTful backend service for managing a collection of books and 
 1. **Clone the repository**
    ```sh
    git clone https://github.com/AkshatK6971/LibraryAPI.git
-   cd library-api
+   cd LibraryAPI
    ```
 
 2. **Install dependencies**
@@ -98,8 +98,8 @@ Library API is a RESTful backend service for managing a collection of books and 
 - **Response:** 
    ```json
    {
-      "accessToken": <accessToken>,
-      "refreshToken": <refreshToken>
+      "accessToken": "accessToken",
+      "refreshToken": "refreshToken"
    }
    ```
 
@@ -122,7 +122,7 @@ Library API is a RESTful backend service for managing a collection of books and 
 - **Response:** 
    ```json
    {
-      "id": <user-id>,
+      "id": "user-id",
       "email": "user@example.com",
       "refreshToken": null
    }
@@ -134,7 +134,7 @@ Library API is a RESTful backend service for managing a collection of books and 
 - **Response:**
    ```json
    {
-      "id": <user-id>,
+      "id": "user-id",
       "email": "user@example.com"
    }
    ```
@@ -158,12 +158,12 @@ Library API is a RESTful backend service for managing a collection of books and 
 - **Response:** 
    ```json
    {
-     "id": <book-id>,
+     "id": "book-id",
      "title": "Book Title",
      "author": "Author Name",
      "genre": "Book Genre",
      "pages": "number of pages",
-     "userId": <user-id>
+     "userId": "user-id"
    }
    ```
 
