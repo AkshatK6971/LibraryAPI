@@ -4,6 +4,10 @@
 
 Library API is a RESTful backend service for managing a collection of books and user authentication. It allows users to register, log in, and manage their own books. The API is built with NestJS and uses Prisma ORM to interact with a MongoDB database. Authentication is handled using JWT tokens with refresh token support.
 
+The Library API is deployed and accessible at the following URL. It uses MongoDB Atlas as the cloud database service with already added data as per `prisma/populatedb.js`.
+
+**Production URL:** [https://library-api-brown.vercel.app/](https://library-api-brown.vercel.app/)
+
 ## Technology Stack
 
 - **Node.js** (JavaScript/TypeScript runtime)
